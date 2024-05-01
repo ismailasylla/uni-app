@@ -9,7 +9,7 @@ const ListingPage = () => {
   const [items, setItems] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [apiError, setApiError] = useState(false);
-  const [dataFetched, setDataFetched] = useState(false); // Track whether data has been fetched successfully
+  const [dataFetched, setDataFetched] = useState(false);
   const navigate = useNavigate();
   const fetchData = useFetchData();
 
@@ -22,7 +22,7 @@ const ListingPage = () => {
           display: true,
         }));
         setItems(itemsWithDisplayFlag);
-        setDataFetched(true); // Set dataFetched to true after successful API call
+        setDataFetched(true);
         setApiError(false);
       } catch (error) {
         console.error('Failed to fetch data:', error);
@@ -30,7 +30,7 @@ const ListingPage = () => {
         const cachedData = localStorage.getItem('items');
         if (cachedData) {
           setItems(JSON.parse(cachedData));
-          setDataFetched(true); // Set dataFetched to true if data is loaded from localStorage
+          setDataFetched(true);
         } else {
           console.error('No cached data found.');
         }
@@ -38,7 +38,6 @@ const ListingPage = () => {
     }
 
     if (!dataFetched) {
-      // Fetch data only if it hasn't been fetched before
       fetchDataFromAPI();
     }
   }, [fetchData, dataFetched]);
@@ -72,7 +71,7 @@ const ListingPage = () => {
   const handleDelete = (itemId) => {
     const updatedItems = items.map((item) => {
       if (item.customId === itemId) {
-        return { ...item, display: false }; // Set display flag to false for deleted item
+        return { ...item, display: false };
       }
       return item;
     });
@@ -82,8 +81,10 @@ const ListingPage = () => {
 
   return (
     <div className="listing-page">
-      <h1>Listing Page</h1>
-      <button onClick={handleSort}>Sort Alphabetically</button>
+      <h1>Universities</h1>
+      <button className="sort-button" onClick={handleSort}>
+        Sort Alphabetically
+      </button>
       <SearchBar onSearch={handleSearch} />
       <div className="table-container">
         <table className="responsive-table">
@@ -91,7 +92,7 @@ const ListingPage = () => {
             <tr>
               <th>University Name</th>
               <th>Website</th>
-              <th>Action</th> {/* Add a new column for delete action */}
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -104,7 +105,7 @@ const ListingPage = () => {
             ) : (
               items.map(
                 (item) =>
-                  item.display && ( // Only render rows with display flag set to true
+                  item.display && (
                     <tr key={item.customId}>
                       <td
                         className="clickable"
