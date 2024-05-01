@@ -1,4 +1,3 @@
-// components/Listing.js
 import React from 'react';
 
 const Listing = ({ items, onItemClick, onDelete }) => {
