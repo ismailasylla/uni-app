@@ -49,7 +49,7 @@ const DetailsPage = () => {
 
   return (
     <div className="details-container">
-      <h1 className="details-title">Details Page</h1>
+      <h1 className="details-title">University Details</h1>
       <div className="card">
         <div className="card-header">
           <h2 className="item-name">{item.name}</h2>
