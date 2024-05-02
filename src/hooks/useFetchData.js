@@ -21,5 +21,5 @@ export function useFetchData() {
     }
   };
 
-  return fetchData;
+  return { fetchData, loading };
 }

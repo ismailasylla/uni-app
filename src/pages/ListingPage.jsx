@@ -1,8 +1,7 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { SearchBar } from '../components';
-import { Listing } from '../components';
-import { useFetchData } from '../hooks/useFetchData';
+import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
+import { SearchBar, Listing } from '../components';
+import { useFetchData } from '../hooks/useFetchData';
 import DetailsPage from './DetailsPage';
 import './ListingPage.css';
 
@@ -14,7 +13,7 @@ const ListingPage = () => {
   const [dataFetched, setDataFetched] = useState(false);
   const [searchNotFound, setSearchNotFound] = useState(false);
   const navigate = useNavigate();
-  const fetchData = useFetchData();
+  const { fetchData, loading } = useFetchData();
   const { itemId } = useParams();
 
   useEffect(() => {
@@ -47,11 +46,11 @@ const ListingPage = () => {
     navigate(`/details/${itemId}`);
   };
 
-  const handleSort = useCallback(() => {
+  const handleSort = () => {
     const sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
     setItems(sortedItems);
     setFilteredItems([]);
-  }, [items]);
+  };
 
   const handleSearch = (keyword) => {
     setSearchKeyword(keyword);
@@ -72,21 +71,18 @@ const ListingPage = () => {
     }
   };
 
-  const handleDelete = useCallback(
-    (itemId) => {
-      const updatedItems = items.filter((item) => item.customId !== itemId);
-      setItems(updatedItems);
-      setFilteredItems(
-        filteredItems.filter((item) => item.customId !== itemId)
-      );
-      localStorage.setItem('items', JSON.stringify(updatedItems));
-    },
-    [items, filteredItems]
-  );
+  const handleDelete = (itemId) => {
+    const updatedItems = items.filter((item) => item.customId !== itemId);
+    setItems(updatedItems);
+    setFilteredItems(filteredItems.filter((item) => item.customId !== itemId));
+    localStorage.setItem('items', JSON.stringify(updatedItems));
+  };
 
   return (
     <div className="listing-page">
-      {apiError && !localStorage.getItem('items') ? (
+      {loading ? (
+        <p>Loading...</p>
+      ) : apiError && !localStorage.getItem('items') ? (
         <p>Error fetching data from the API. Please try again later.</p>
       ) : dataFetched && items.length > 0 ? (
         <>
