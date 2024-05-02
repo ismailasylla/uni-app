@@ -7,9 +7,7 @@ export function useFetchData() {
   const fetchData = async () => {
     setLoading(true);
     try {
-      const response = await axios.get(
-        'http://universities.hipolabs.com/search?country=United%20Arab%20Emirates'
-      );
+      const response = await axios.get(process.env.REACT_APP_API_URL);
       const data = response.data.map((item, index) => ({
         ...item,
         customId: index + 1,
