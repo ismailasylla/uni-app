@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import Listing from '../components/Listing';
 import SearchBar from '../components/SearchBar';
 import { useFetchData } from '../hooks/useFetchData';
 import { useNavigate } from 'react-router-dom';
@@ -81,11 +80,13 @@ const ListingPage = () => {
 
   return (
     <div className="listing-page">
-      <h1>Universities</h1>
-      <button className="sort-button" onClick={handleSort}>
-        Sort Alphabetically
-      </button>
-      <SearchBar onSearch={handleSearch} />
+      <h1>Listing Page</h1>
+      <div className="search-sort-container">
+        <SearchBar onSearch={handleSearch} />
+        <button className="sort-button" onClick={handleSort}>
+          Sort Alphabetically
+        </button>
+      </div>
       <div className="table-container">
         <table className="responsive-table">
           <thead>

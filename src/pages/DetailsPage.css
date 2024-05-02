@@ -37,20 +37,19 @@
 }
 
 .logo-placeholder {
-  width: 100px; /* Adjust size as needed */
-  height: 100px; /* Adjust size as needed */
+  width: 100px; 
+  height: 100px; 
   background-color: #ccc;
   border-radius: 50%;
-  margin: 0 auto; /* Center horizontally */
+  margin: 0 auto;
 }
-
-/* DetailsPage.css */
 
 .back-link {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 20px;
-  background-color: #169f9f; /* Updated color */
+  background-color: #169f9f;
+  
   color: white;
   text-decoration: none;
   border: none;
@@ -60,5 +59,5 @@
 }
 
 .back-link:hover {
-  background-color: #0e7e7e; /* Darker shade on hover */
+  background-color: #0e7e7e; 
 }

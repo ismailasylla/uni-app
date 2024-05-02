@@ -1,5 +1,4 @@
 import React from 'react';
-
 const Listing = ({ items, onItemClick, onDelete }) => {
   return (
     <div>

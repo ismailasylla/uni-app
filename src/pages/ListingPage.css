@@ -25,7 +25,6 @@
   overflow-x: auto;
 }
 
-/* Fade effect for table rows */
 .responsive-table tr {
   transition: opacity 0.5s ease;
 }
@@ -69,6 +68,10 @@
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
+
+  display: flex;
+  align-items: center;
+  margin-left: auto; 
 }
 
 .sort-button:hover {
@@ -84,6 +87,7 @@
 .search-sort-container .sort-button {
   margin-left: 10px;
 }
+
 
 .search-input {
   width: 300px; 
@@ -106,3 +110,8 @@
   background-color: #0e7e7e;
 }
 
+.search-sort-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

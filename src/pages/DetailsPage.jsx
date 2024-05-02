@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import './DetailsPage.css'; // Import CSS for styling
+import './DetailsPage.css';
 
 const DetailsPage = () => {
   const { itemId } = useParams();
@@ -61,9 +61,7 @@ const DetailsPage = () => {
               {item.web_pages}
             </a>
           </p>
-          {/* Placeholder for university logo */}
           <div className="logo-placeholder"></div>
-          {/* Use Link for navigation */}
           <Link to="/" className="back-link">
             Back
           </Link>
