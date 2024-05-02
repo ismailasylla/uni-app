@@ -87,9 +87,9 @@ const ListingPage = () => {
           <h1>Universities</h1>
           <div className="search-sort-container">
             <SearchBar onSearch={handleSearch} />
-            <p>Current search: {searchKeyword}</p>{' '}
+            {/* <p>Current search: {searchKeyword}</p>{' '} */}
             <button className="sort-button" onClick={handleSort}>
-              Sort Alphabetically
+              Sort
             </button>
           </div>
           {searchNotFound ? (

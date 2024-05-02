@@ -41,18 +41,6 @@
   background-color: #f0f0f0;
 }
 
-.delete-button {
-  background-color: #ff4d4f;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-}
-
-.delete-button:hover {
-  background-color: #ff7875;
-}
-
 .search-input {
   padding: 10px;
   border: 1px solid #ccc;
