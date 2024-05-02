@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { SearchBar } from '../components';
 import { Listing } from '../components';
 import { useFetchData } from '../hooks/useFetchData';
@@ -24,7 +24,7 @@ const ListingPage = () => {
         setItems(data);
         setDataFetched(true);
         setApiError(false);
-        localStorage.setItem('items', JSON.stringify(data)); // Cache data in local storage
+        localStorage.setItem('items', JSON.stringify(data));
       } catch (error) {
         console.error('Failed to fetch data from API:', error);
         setApiError(true);
@@ -47,11 +47,11 @@ const ListingPage = () => {
     navigate(`/details/${itemId}`);
   };
 
-  const handleSort = () => {
+  const handleSort = useCallback(() => {
     const sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
     setItems(sortedItems);
     setFilteredItems([]);
-  };
+  }, [items]);
 
   const handleSearch = (keyword) => {
     setSearchKeyword(keyword);
@@ -72,11 +72,14 @@ const ListingPage = () => {
     }
   };
 
-  const handleDelete = (itemId) => {
-    const updatedItems = items.filter((item) => item.customId !== itemId);
-    setItems(updatedItems);
-    localStorage.setItem('items', JSON.stringify(updatedItems));
-  };
+  const handleDelete = useCallback(
+    (itemId) => {
+      const updatedItems = items.filter((item) => item.customId !== itemId);
+      setItems(updatedItems);
+      localStorage.setItem('items', JSON.stringify(updatedItems));
+    },
+    [items]
+  );
 
   return (
     <div className="listing-page">

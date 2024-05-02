@@ -1,7 +1,17 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Listing.css';
 
 const Listing = ({ items, onItemClick, onDelete }) => {
+  const [deletedItems, setDeletedItems] = useState([]);
+
+  const handleDelete = (itemId) => {
+    setDeletedItems([...deletedItems, itemId]);
+    setTimeout(() => {
+      onDelete(itemId);
+      setDeletedItems(deletedItems.filter((id) => id !== itemId));
+    }, 500);
+  };
+
   return (
     <div className="listing-container">
       <table className="item-table">
@@ -14,7 +24,12 @@ const Listing = ({ items, onItemClick, onDelete }) => {
         </thead>
         <tbody>
           {items.map((item) => (
-            <tr key={item.customId}>
+            <tr
+              key={item.customId}
+              className={
+                deletedItems.includes(item.customId) ? 'item-deleted' : ''
+              }
+            >
               <td
                 onClick={() => onItemClick(item.customId)}
                 className="clickable"
@@ -32,7 +47,7 @@ const Listing = ({ items, onItemClick, onDelete }) => {
               </td>
               <td>
                 <button
-                  onClick={() => onDelete(item.customId)}
+                  onClick={() => handleDelete(item.customId)}
                   className="delete-button"
                 >
                   Delete
