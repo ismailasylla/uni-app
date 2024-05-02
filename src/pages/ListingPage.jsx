@@ -24,7 +24,7 @@ const ListingPage = () => {
         setItems(data);
         setDataFetched(true);
         setApiError(false);
-        localStorage.setItem('items', JSON.stringify(data)); // Cache data in local storage
+        localStorage.setItem('items', JSON.stringify(data));
       } catch (error) {
         console.error('Failed to fetch data from API:', error);
         setApiError(true);
