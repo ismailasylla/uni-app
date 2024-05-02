@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import SearchBar from '../components/SearchBar';
-import Listing from '../components/Listing';
+import { SearchBar } from '../components';
+import { Listing } from '../components';
 import { useFetchData } from '../hooks/useFetchData';
 import { useNavigate, useParams } from 'react-router-dom';
 import DetailsPage from './DetailsPage';
@@ -84,7 +84,7 @@ const ListingPage = () => {
         <p>Error fetching data from the API. Please try again later.</p>
       ) : dataFetched && items.length > 0 ? (
         <>
-          <h1>Listing Page</h1>
+          <h1>Universities</h1>
           <div className="search-sort-container">
             <SearchBar onSearch={handleSearch} />
             <p>Current search: {searchKeyword}</p>{' '}
