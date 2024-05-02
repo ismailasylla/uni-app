@@ -76,9 +76,12 @@ const ListingPage = () => {
     (itemId) => {
       const updatedItems = items.filter((item) => item.customId !== itemId);
       setItems(updatedItems);
+      setFilteredItems(
+        filteredItems.filter((item) => item.customId !== itemId)
+      );
       localStorage.setItem('items', JSON.stringify(updatedItems));
     },
-    [items]
+    [items, filteredItems]
   );
 
   return (
