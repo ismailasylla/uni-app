@@ -1,8 +1,11 @@
+// ListingPage.js
+
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SearchBar, Listing } from '../components';
 import { useFetchData } from '../hooks/useFetchData';
 import DetailsPage from './DetailsPage';
+import LoadingSpinner from '../components/LoadingSpinner';
 import './ListingPage.css';
 
 const ListingPage = () => {
@@ -81,7 +84,7 @@ const ListingPage = () => {
   return (
     <div className="listing-page">
       {loading ? (
-        <p>Loading...</p>
+        <LoadingSpinner />
       ) : apiError && !localStorage.getItem('items') ? (
         <p>Error fetching data from the API. Please try again later.</p>
       ) : dataFetched && items.length > 0 ? (
@@ -89,7 +92,6 @@ const ListingPage = () => {
           <h1>Universities</h1>
           <div className="search-sort-container">
             <SearchBar onSearch={handleSearch} />
-            {/* <p>Current search: {searchKeyword}</p>{' '} */}
             <button className="sort-button" onClick={handleSort}>
               Sort
             </button>
