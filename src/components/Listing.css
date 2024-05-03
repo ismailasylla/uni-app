@@ -1,7 +1,5 @@
-/* Listing.css */
-
 .listing-container {
-  opacity: 1; /* Set initial opacity to 1 to ensure visibility */
+  opacity: 1;
   transition: opacity 0.5s ease-in-out;
 }
 
@@ -22,12 +20,12 @@
 }
 
 .item-table tr {
-  opacity: 0; /* Start with opacity 0 for the fade-in effect */
+  opacity: 0; 
 }
 
 .item-table tr.fade-in {
-  opacity: 1; /* Change opacity to 1 to reveal the table row */
-  transition: opacity 0.5s ease-in-out; /* Apply transition only to opacity */
+  opacity: 1;
+  transition: opacity 0.5s ease-in-out;
 }
 
 .item-table tr:hover {

@@ -1,5 +1,3 @@
-// Listing.js
-
 import React, { useState, useEffect } from 'react';
 import './Listing.css';
 
@@ -11,7 +9,7 @@ const Listing = ({ items, onItemClick, onDelete }) => {
     rows.forEach((row, index) => {
       setTimeout(() => {
         row.classList.add('fade-in');
-      }, index * 100); // Delay each row's animation
+      }, index * 100);
     });
   }, [items]);
 

@@ -1,13 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import './DetailsPage.css';
-import LoadingSpinner from '../components/LoadingSpinner'; // Import the LoadingSpinner component
+import LoadingSpinner from '../components/LoadingSpinner';
 
 const DetailsPage = () => {
   const { itemId } = useParams();
   const [item, setItem] = useState(null);
-  const [loading, setLoading] = useState(true); // Initialize loading state to true
-  const [fadeIn, setFadeIn] = useState(false); // State to manage fade-in animation
+  const [loading, setLoading] = useState(true);
+  const [fadeIn, setFadeIn] = useState(false);
 
   useEffect(() => {
     async function fetchItemDetails() {
@@ -29,14 +29,13 @@ const DetailsPage = () => {
       } catch (error) {
         console.error('Error fetching item details:', error);
       } finally {
-        setLoading(false); // Set loading state to false when data fetching completes
+        setLoading(false);
       }
     }
     fetchItemDetails();
   }, [itemId]);
 
   useEffect(() => {
-    // Trigger fade-in animation when component mounts
     setFadeIn(true);
   }, []);
 
@@ -48,7 +47,7 @@ const DetailsPage = () => {
           <h2 className="item-name">{item ? item.name : 'Loading...'}</h2>
         </div>
         <div className="card-body">
-          {loading ? ( // Render the LoadingSpinner component while loading
+          {loading ? (
             <LoadingSpinner />
           ) : item ? (
             <>
