@@ -1,6 +1,14 @@
+/* DetailsPage.css */
+
 .details-container {
   margin: 20px;
   padding: 20px;
+  opacity: 0; /* Start with opacity 0 for the fade-in effect */
+  transition: opacity 0.5s ease-in-out;
+}
+
+.details-container.fade-in {
+  opacity: 1; /* Change opacity to 1 to reveal the details page */
 }
 
 .details-title {
@@ -49,7 +57,6 @@
   padding: 10px 20px;
   margin-top: 20px;
   background-color: #169f9f;
-  
   color: white;
   text-decoration: none;
   border: none;

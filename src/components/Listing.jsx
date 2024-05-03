@@ -1,8 +1,19 @@
-import React, { useState } from 'react';
+// Listing.js
+
+import React, { useState, useEffect } from 'react';
 import './Listing.css';
 
 const Listing = ({ items, onItemClick, onDelete }) => {
   const [deletedItems, setDeletedItems] = useState([]);
+
+  useEffect(() => {
+    const rows = document.querySelectorAll('.item-table tbody tr');
+    rows.forEach((row, index) => {
+      setTimeout(() => {
+        row.classList.add('fade-in');
+      }, index * 100); // Delay each row's animation
+    });
+  }, [items]);
 
   const handleDelete = (itemId) => {
     setDeletedItems([...deletedItems, itemId]);
@@ -26,9 +37,9 @@ const Listing = ({ items, onItemClick, onDelete }) => {
           {items.map((item) => (
             <tr
               key={item.customId}
-              className={
+              className={`${
                 deletedItems.includes(item.customId) ? 'item-deleted' : ''
-              }
+              }`}
             >
               <td
                 onClick={() => onItemClick(item.customId)}
