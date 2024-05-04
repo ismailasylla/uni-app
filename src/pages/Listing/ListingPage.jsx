@@ -48,9 +48,14 @@ const ListingPage = () => {
   };
 
   const handleSort = () => {
-    const sortedItems = [...items].sort((a, b) => a.name.localeCompare(b.name));
-    setItems(sortedItems);
-    setFilteredItems([]);
+    const sortedFilteredItems = [...filteredItems].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    const sortedAllItems = [...items].sort((a, b) =>
+      a.name.localeCompare(b.name)
+    );
+    setFilteredItems(sortedFilteredItems);
+    setItems(sortedAllItems);
   };
 
   const handleSearch = (keyword) => {
