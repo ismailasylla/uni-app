@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SearchBar, Listing } from '../../components';
+import { SearchBar, Listing, Button } from '../../components';
 import { useFetchData } from '../../hooks/useFetchData';
 import DetailsPage from '../details/DetailsPage';
 import LoadingSpinner from '../../components/Spinner/LoadingSpinner';
@@ -90,9 +90,11 @@ const ListingPage = () => {
           <h1>Universities</h1>
           <div className="search-sort-container">
             <SearchBar onSearch={handleSearch} />
-            <button className="sort-button" onClick={handleSort}>
-              Sort
-            </button>
+            <Button
+              onClick={handleSort}
+              text="Sort"
+              className="sort-button"
+            />{' '}
           </div>
           {searchNotFound ? (
             <p>No items found matching the search.</p>
