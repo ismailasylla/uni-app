@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
+import Button from '../../components/buttons/Button';
 import './DetailsPage.css';
 
 const DetailsPage = () => {
@@ -62,9 +63,11 @@ const DetailsPage = () => {
             </a>
           </p>
           <div className="logo-placeholder"></div>
-          <Link to="/" className="back-link">
-            Back
-          </Link>
+          <Button
+            text="Back"
+            onClick={() => window.history.back()}
+            className="back-button"
+          />
         </div>
       </div>
     </div>

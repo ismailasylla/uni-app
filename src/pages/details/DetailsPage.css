@@ -44,7 +44,7 @@
   margin: 0 auto;
 }
 
-.back-link {
+.back-button {
   display: inline-block;
   padding: 10px 20px;
   margin-top: 20px;
@@ -58,6 +58,6 @@
   transition: background-color 0.3s ease;
 }
 
-.back-link:hover {
+.back-button:hover {
   background-color: #0e7e7e; 
 }
