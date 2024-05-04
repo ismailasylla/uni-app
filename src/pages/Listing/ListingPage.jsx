@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SearchBar, Listing } from '../components';
-import { useFetchData } from '../hooks/useFetchData';
-import DetailsPage from './DetailsPage';
-import LoadingSpinner from '../components/LoadingSpinner';
+import { SearchBar, Listing } from '../../components';
+import { useFetchData } from '../../hooks/useFetchData';
+import DetailsPage from '../details/DetailsPage';
+import LoadingSpinner from '../../components/Spinner/LoadingSpinner';
 import './ListingPage.css';
 
 const ListingPage = () => {

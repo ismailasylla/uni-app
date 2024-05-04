@@ -2,8 +2,8 @@ import { Suspense, lazy } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
-const ListingPage = lazy(() => import('./pages/ListingPage'));
-const DetailsPage = lazy(() => import('./pages/DetailsPage'));
+const ListingPage = lazy(() => import('./pages/Listing/ListingPage'));
+const DetailsPage = lazy(() => import('./pages/details/DetailsPage'));
 
 const ErrorFallback = () => {
   return <div>Error! Something went wrong.</div>;

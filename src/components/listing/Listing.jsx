@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Button from '../buttons/Button';
 import './Listing.css';
 
 const Listing = ({ items, onItemClick, onDelete }) => {
@@ -46,12 +47,11 @@ const Listing = ({ items, onItemClick, onDelete }) => {
                 </a>
               </td>
               <td>
-                <button
+                <Button
+                  text="Delete"
                   onClick={() => handleDelete(item.customId)}
                   className="delete-button"
-                >
-                  Delete
-                </button>
+                />
               </td>
             </tr>
           ))}
