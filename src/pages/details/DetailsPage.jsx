@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from '../../components/buttons/Button';
 import './DetailsPage.css';
+import { ErrorBanner, LoadingSpinner } from '../../components';
 
 const DetailsPage = () => {
   const { itemId } = useParams();
@@ -41,11 +42,13 @@ const DetailsPage = () => {
   }, [itemId]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return <LoadingSpinner />;
   }
 
   if (apiError || !item) {
-    return <div>Error: Item not found</div>;
+    return (
+      <ErrorBanner message="Error fetching data from the API. Please try again later." />
+    );
   }
 
   return (

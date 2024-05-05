@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { SearchBar, Listing, Button } from '../../components';
+import { SearchBar, Listing, Button, ErrorBanner } from '../../components/';
 import { useFetchData } from '../../hooks/useFetchData';
 import DetailsPage from '../details/DetailsPage';
 import LoadingSpinner from '../../components/Spinner/LoadingSpinner';
@@ -89,7 +89,7 @@ const ListingPage = () => {
       {loading ? (
         <LoadingSpinner />
       ) : apiError && !localStorage.getItem('items') ? (
-        <p>Error fetching data from the API. Please try again later.</p>
+        <ErrorBanner message="Error fetching data from the API. Please try again later." />
       ) : dataFetched && items.length > 0 ? (
         <>
           <h1>Universities</h1>
@@ -102,7 +102,7 @@ const ListingPage = () => {
             />{' '}
           </div>
           {searchNotFound ? (
-            <p>No items found matching the search.</p>
+            <ErrorBanner message="No items found matching the search." />
           ) : (
             <Listing
               items={filteredItems.length > 0 ? filteredItems : items}
@@ -112,7 +112,7 @@ const ListingPage = () => {
           )}
         </>
       ) : (
-        <p>Loading...</p>
+        <LoadingSpinner />
       )}
       {itemId && dataFetched && items.length > 0 && (
         <DetailsPage items={items} itemId={itemId} />
