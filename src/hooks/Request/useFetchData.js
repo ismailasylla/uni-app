@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-export function useFetchData() {
+const useFetchData = () => {
   const [loading, setLoading] = useState(false);
 
   const fetchData = async () => {
@@ -22,4 +22,6 @@ export function useFetchData() {
   };
 
   return { fetchData, loading };
-}
+};
+
+export default useFetchData;
