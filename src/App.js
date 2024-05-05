@@ -6,7 +6,7 @@ const ListingPage = lazy(() => import('./pages/Listing/ListingPage'));
 const DetailsPage = lazy(() => import('./pages/details/DetailsPage'));
 
 const ErrorFallback = () => {
-  return <div>Error! Something went wrong.</div>;
+  return <ErrorBanner message="OOPS! Something went wrong." />;
 };
 const App = () => {
   return (
