@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SearchBar, Listing, Button, ErrorBanner } from '../../components/';
-import { useFetchData } from '../../hooks/useFetchData';
+import { useFetchData } from '../../hooks/index';
 import DetailsPage from '../details/DetailsPage';
 import LoadingSpinner from '../../components/Spinner/LoadingSpinner';
+import { useLocalStorage } from '../../hooks/index';
 import './ListingPage.css';
 
 const ListingPage = () => {
-  const [items, setItems] = useState([]);
+  const [items, setItems] = useLocalStorage('items', []);
   const [filteredItems, setFilteredItems] = useState([]);
   const [searchKeyword, setSearchKeyword] = useState('');
   const [apiError, setApiError] = useState(false);
@@ -24,7 +25,6 @@ const ListingPage = () => {
         setItems(data);
         setDataFetched(true);
         setApiError(false);
-        localStorage.setItem('items', JSON.stringify(data));
       } catch (error) {
         console.error('Failed to fetch data from API:', error);
         setApiError(true);
@@ -41,7 +41,7 @@ const ListingPage = () => {
     if (!dataFetched) {
       fetchDataFromAPI();
     }
-  }, [fetchData, dataFetched]);
+  }, [fetchData, dataFetched, setItems]);
 
   const handleItemClick = (itemId) => {
     navigate(`/details/${itemId}`);
