@@ -6,6 +6,7 @@ import DetailsPage from '../details/DetailsPage';
 import LoadingSpinner from '../../components/Spinner/LoadingSpinner';
 import { useLocalStorage } from '../../hooks/index';
 import './ListingPage.css';
+import Heading from '../../components/Heading/Heading';
 
 const ListingPage = () => {
   const [items, setItems] = useLocalStorage('items', []);
@@ -92,7 +93,7 @@ const ListingPage = () => {
         <ErrorBanner message="Error fetching data from the API. Please try again later." />
       ) : dataFetched && items.length > 0 ? (
         <>
-          <h1>Universities</h1>
+          <Heading text="Universities" size="large" color="#333" />
           <div className="search-sort-container">
             <SearchBar onSearch={handleSearch} />
             <Button
