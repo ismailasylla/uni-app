@@ -3,6 +3,7 @@ import { useParams } from 'react-router-dom';
 import Button from '../../components/buttons/Button';
 import './DetailsPage.css';
 import { ErrorBanner, LoadingSpinner } from '../../components';
+import Heading from '../../components/Heading/Heading';
 
 const DetailsPage = () => {
   const { itemId } = useParams();
@@ -53,7 +54,7 @@ const DetailsPage = () => {
 
   return (
     <div className="details-container">
-      <h1 className="details-title">University Details</h1>
+      <Heading text="University Details" size="large" color="#333" />
       <div className="card">
         <div className="card-header">
           <h2 className="item-name">{item.name}</h2>
