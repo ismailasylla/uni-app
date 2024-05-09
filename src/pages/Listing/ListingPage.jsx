@@ -1,3 +1,4 @@
+// ListingPage.js
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { SearchBar, Listing, Button, ErrorBanner } from '../../components/';
@@ -7,6 +8,7 @@ import LoadingSpinner from '../../components/Spinner/LoadingSpinner';
 import { useLocalStorage } from '../../hooks/index';
 import './ListingPage.css';
 import Heading from '../../components/Heading/Heading';
+import Pagination from '../../components/Pagination/Pagination';
 
 const ListingPage = () => {
   const [items, setItems] = useLocalStorage('items', []);
@@ -15,6 +17,8 @@ const ListingPage = () => {
   const [apiError, setApiError] = useState(false);
   const [dataFetched, setDataFetched] = useState(false);
   const [searchNotFound, setSearchNotFound] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 10;
   const navigate = useNavigate();
   const { fetchData, loading } = useFetchData();
   const { itemId } = useParams();
@@ -43,6 +47,17 @@ const ListingPage = () => {
       fetchDataFromAPI();
     }
   }, [fetchData, dataFetched, setItems]);
+
+  // Calculate the range of items to display based on current page
+  const indexOfLastItem = currentPage * itemsPerPage;
+  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
+  const currentItems =
+    filteredItems.length > 0
+      ? filteredItems.slice(indexOfFirstItem, indexOfLastItem)
+      : items.slice(indexOfFirstItem, indexOfLastItem);
+
+  // Change page
+  const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
   const handleItemClick = (itemId) => {
     navigate(`/details/${itemId}`);
@@ -106,11 +121,18 @@ const ListingPage = () => {
             <ErrorBanner message="No items found matching the search." />
           ) : (
             <Listing
-              items={filteredItems.length > 0 ? filteredItems : items}
+              items={currentItems}
               onItemClick={handleItemClick}
               onDelete={handleDelete}
             />
           )}
+          <Pagination
+            itemsPerPage={itemsPerPage}
+            totalItems={
+              filteredItems.length > 0 ? filteredItems.length : items.length
+            }
+            paginate={paginate}
+          />
         </>
       ) : (
         <LoadingSpinner />
